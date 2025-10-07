@@ -42,9 +42,6 @@ class Transformer(nn.Module):
         return input_tokens
     
     def apply_temperature(self, output, temperature: float = 1.0):
-        """
-        output: (batch_size, max_seq_len, vocab_size)
-        """
         scaled_output = output / temperature  
         
         output = F.softmax(scaled_output, dim=-1)  
@@ -98,7 +95,6 @@ class Transformer(nn.Module):
                 x = 0
                 k = 0
                 y = []
-                # output = F.softmax(output, dim=-1)
                 output = self.repetition_penalty(output,predicted_tokens, col = i)
                 output = self.apply_temperature(output, temperature = 0.2)
                 temp_output = output.squeeze(0)
@@ -108,7 +104,6 @@ class Transformer(nn.Module):
                     y.append(j)
                     x += output[0][i][j].item()
                     k += 1
-                # print("size of neucleus : ",len(y), end="")
                 next_token = random.choice(y)
                 predicted_tokens.append(next_token)
                 output_tokens[0][i+1] = next_token
@@ -124,4 +119,5 @@ class Transformer(nn.Module):
         for layer in self.layer[1:]:
             layer_output = layer(layer_output, padding_mask=None, lookahead_mask=lookahead_mask)
         output = self.linear(self.final_layernorm(layer_output))
+
         return output 
