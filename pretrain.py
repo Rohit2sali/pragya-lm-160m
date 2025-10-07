@@ -18,7 +18,7 @@ def accuracy_fn(predictions, target):
 
 def calculate_loss(prediction, target_tokens):
     criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
-    prediction = prediction.reshape(-1, prediction.size(-1)) # (batch_size * seq_len, vocab_size)
+    prediction = prediction.reshape(-1, prediction.size(-1)) # (batch_size * seq_len, vocab_size
     target_tokens = target_tokens.reshape(-1)
     return criterion(prediction, target_tokens)
 
@@ -33,10 +33,10 @@ def eval(input_tokens):
 def get_scheduler(optimizer, warmup_steps, total_steps, base_lr=5e-4, min_lr=5e-6):
     def lr_lambda(current_step):
         if current_step < warmup_steps:
-            return float(current_step) / float(max(1, warmup_steps))  # Linear warmup to 1.0
+            return float(current_step) / float(max(1, warmup_steps))  
         progress = float(current_step - warmup_steps) / float(max(1, total_steps - warmup_steps))
-        cosine = 0.5 * (1.0 + math.cos(math.pi * progress))  # in [0,1]
-        scaled = cosine * (1.0 - min_lr / base_lr) + (min_lr / base_lr)  # in [min_lr/base_lr, 1.0]
+        cosine = 0.5 * (1.0 + math.cos(math.pi * progress)) 
+        scaled = cosine * (1.0 - min_lr / base_lr) + (min_lr / base_lr)  
         return scaled
     return LambdaLR(optimizer, lr_lambda)
 
@@ -50,7 +50,7 @@ def train(input_tokens):
     scaler.scale(loss).backward()
     scaler.unscale_(optimizer)
     torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
-    scaler.step(optimizer)  # Update model weights
+    scaler.step(optimizer)  
     scaler.update()
     scheduler.step()
     return loss, acc
@@ -137,3 +137,4 @@ if __name__ == "__main__":
         torch.save(train_losses, "train_losses.pt")
         torch.save(train_accuracies, "train_accuracies.pt")
         print(f"the train loss is : {train_loss/(len(train_data)/batch_size)}, the train acc is : {train_acc/(len(train_data)/batch_size)}")
+
