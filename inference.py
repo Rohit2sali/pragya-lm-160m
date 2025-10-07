@@ -17,11 +17,11 @@ batch_size = 64
 
 model = Transformer(vocab_len, max_seq_len, n_heads, d_model, d_ff, n_layers, eps)
 
-model_ck = torch.load(r"C:\machine learning\miniLLM\fine_tuned_transformer.pth", map_location=torch.device('cpu'))
+model_ck = torch.load(r"\fine_tuned_transformer.pth")
 
 new_state_dict = {}
 for key, value in model_ck.items():
-    new_key = key.replace("module.", "")  # Remove 'module.' from the keys
+    new_key = key.replace("module.", "")  
     new_state_dict[new_key] = value
 
 model.load_state_dict(new_state_dict, strict=False)
@@ -36,3 +36,4 @@ model.eval()
 print(model.generate_greedy(toke.tokenize("what is the world?")))
 
 print(model.generate_top_p(toke.tokenize("what is the world?")))
+
