@@ -31,4 +31,9 @@ Fine-tuning
 Dataset(s): (ELI5)    
 Fine-tuning Objective: (next token prediction)  
 Evaluation Metrics: EM (Exact Match)  
-Perplexity : 149.9536 (dataset : wikitext_103)   
+Perplexity : 149.9536 (dataset : wikitext_103)    
+  
+⚠️ Limitations  
+May produce incorrect or hallucinated answers  
+Limited to 512-token context  
+No explicit safety filtering  
