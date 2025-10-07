@@ -37,3 +37,54 @@ Perplexity : 149.9536 (dataset : wikitext_103)
 May produce incorrect or hallucinated answers  
 Limited to 512-token context  
 No explicit safety filtering  
+
+To use the trained models, you can download them from here,  
+https://huggingface.co/Rohit2sali/pragya-lm-160m
+
+Below are some examples of the model at inference.  
+
+Q - what is artificial intelligence technology?  
+Ans - It is the ability to understand things, and the ability to see things.   
+      There is no way to make it any better than we do, and we have to learn how to understand it.  
+      We can't learn how to read and interpret it.  
+
+Q - what is love?  
+Ans - The idea is that if you want to love something, and your heart starts beating faster than  
+      it normally would. That's the definition of "love."  
+
+Q - what is love?  
+Ans - I'm not sure if it's a literal definition of love, but the idea that we're all together  
+      in one place or another is based on some sort of instinctual connection.
+
+Q - what do you think about Europe?  
+Ans - Europe is a continent, so the idea that Europe has an abundance of water (and other things)  
+      and not just land seems to be false.  
+
+Q - what is democracy?  
+Ans - The term democracy is a bit misleading. It's not just the idea of government,  
+      it's the concept that people can vote for things they don't like and decide what their  
+      opinion on them should be based on whether or not you agree with your view of the world.
+
+Q - which is the best country in the world?  
+Ans - I don't think there's any way to know.  
+
+Q - what is difference between animals and humans?  
+Ans - Humans are generally considered to be the most intelligent species in the world,  
+      and humans have been around for a long time. Humans were not born with this trait,  
+      but they evolved it as an advantage over other animals.
+
+Q - what is the meaning of emotion?  
+Ans - It's a very complex phenomenon. For example, when you are talking about something   
+      that is thought to be the result of an action, it makes sense for your brain to   
+      interpret this as emotion.  
+
+
+
+
+
+
+
+
+
+
+
