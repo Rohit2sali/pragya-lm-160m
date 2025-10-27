@@ -42,15 +42,15 @@ def get_scheduler(optimizer, warmup_steps, total_steps, base_lr=5e-4, min_lr=5e-
 
 def train(input_tokens):
     model.train()
-    with torch.cuda.amp.autocast():
+    with torch.cuda.amp.autocast(): # Using automatic mixed precision for faster training.
         prediction = model(input_tokens[:, :-1])
         loss = calculate_loss(prediction, input_tokens[:, 1:])
         acc = accuracy_fn(prediction, input_tokens[:, 1:])
-    optimizer.zero_grad()
-    scaler.scale(loss).backward()
-    scaler.unscale_(optimizer)
-    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
-    scaler.step(optimizer)  
+    optimizer.zero_grad() # Clearing the old gradients from the last step.
+    scaler.scale(loss).backward() # Due to amp some gradients who use FP16 can be very small, near to zero, so to avoid that we multiply the loss by some constant number to keep the gradients stable.  
+    scaler.unscale_(optimizer) # after the back propagation is done the parameters are scaled up because we scaled the loss by some constant number, so we have to unscale the parameters, for that we divide the parameters by same scaling factor.   
+    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0) # sometimes gradients become very large, so if there total norm exceeds max_norm, we scale them without changing their direction.  
+    scaler.step(optimizer) # checks if model parameters are finite(not NaN or Inf), if true then updates the parameters, if not then skip that batch.  
     scaler.update()
     scheduler.step()
     return loss, acc
@@ -137,4 +137,5 @@ if __name__ == "__main__":
         torch.save(train_losses, "train_losses.pt")
         torch.save(train_accuracies, "train_accuracies.pt")
         print(f"the train loss is : {train_loss/(len(train_data)/batch_size)}, the train acc is : {train_acc/(len(train_data)/batch_size)}")
+
 
