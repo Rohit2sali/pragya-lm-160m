@@ -6,7 +6,7 @@ This is repository for pragya language model which is 160 million parameters of 
   
 ✅ It is a Custom-trained 160M parameter transformer optimized for QA.  
 📚 Pretrained from scratch on diverse text corpus for general language understanding.  
-⚡ Efficient inference — runs on single GPU / CPU after quantization.  
+⚡ Efficient inference — runs on single GPU / CPU.  
 🧩 Tokenizer and weights included for easy reproduction.  
   
 🧠 Model Overview  
