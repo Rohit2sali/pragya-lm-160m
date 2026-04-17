@@ -35,7 +35,7 @@ Perplexity : 149.9536 (dataset : wikitext_103)
   
 ⚠️ Limitations  
 May produce incorrect or hallucinated answers  
-Limited to 512-token context  
+Limited to 128-token context  
 No explicit safety filtering  
 
 To use the trained models, you can download them from here,  
