@@ -1,0 +1,10 @@
+# Dependencies used to run the performance benchmarks.
+# The CPU-only build of PyTorch is enough: the benchmarks run on CI runners
+# without a GPU.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.9.1+cpu
+transformers==5.15.0
+numpy==2.4.4
+pytest==9.1.1
+pytest-codspeed==5.0.3

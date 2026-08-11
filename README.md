@@ -1,5 +1,7 @@
 # pragya-lm-160m  
 
+[![CodSpeed](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json)](https://app.codspeed.io/Rohit2sali/pragya-lm-160m?utm_source=badge)
+
 This is repository for pragya language model which is 160 million parameters of transformer model.  
 
 💡 key-features  
@@ -88,3 +90,16 @@ Ans - It's a very complex phenomenon. For example, when you are talking about so
 
 
 
+
+## Benchmarks
+
+Performance of the model building blocks and of the tokenization pipelines is
+tracked continuously with [CodSpeed](https://codspeed.io). The benchmarks live in
+the `benchmarks/` directory and run on every pull request.
+
+To run them locally:
+
+```bash
+pip install -r benchmarks/requirements.txt
+pytest benchmarks/ --codspeed
+```
